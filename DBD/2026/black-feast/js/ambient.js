@@ -81,16 +81,6 @@ function toggleAudio() {
   }
 }
 
-function autoStartAudioOnce() {
-  startAudio();
-  ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
-    document.removeEventListener(evt, autoStartAudioOnce);
-  });
-}
-['click', 'pointerdown', 'keydown', 'touchstart'].forEach(function (evt) {
-  document.addEventListener(evt, autoStartAudioOnce, { once: true, passive: true });
-});
-
 // 이전 페이지에서 재생 중이었다면, 새 페이지 로드 시 같은 위치에서 이어서 자동 재생을 시도한다.
 // (브라우저 자동재생 정책상 차단될 수 있으며, 차단되면 다음 클릭 시 이어듣기로 대체된다.)
 (function () {

@@ -524,12 +524,47 @@ a { color: inherit; text-decoration: none; }
 /* CTA */
 .cta-section { text-align: center; padding: 100px 0; }
 .cta-box {
-  background: radial-gradient(ellipse at 50% 0%, rgba(204,17,17,0.25), transparent 65%), var(--surface);
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(204,17,17,0.25), transparent 65%),
+    linear-gradient(180deg, rgba(10,0,0,0.7) 0%, rgba(10,0,0,0.88) 100%),
+    url('./images/invitation.png') center / cover no-repeat;
   border: 1px solid var(--gold);
   border-radius: 16px;
   padding: 56px 32px;
   max-width: 680px;
   margin: 0 auto;
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+}
+.cta-box:hover {
+  transform: translateY(-6px);
+  border-color: var(--candle);
+  box-shadow: 0 24px 56px rgba(204,17,17,0.4);
+}
+.cta-box-seal {
+  position: absolute;
+  display: block;
+  top: -80px;
+  left: -26px;
+  width: 128px;
+  height: 244px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  transform: rotate(213deg);
+  transition: transform 0.4s, box-shadow 0.4s;
+  z-index: 2;
+  cursor: pointer;
+}
+.cta-box-seal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cta-box:hover .cta-box-seal {
+  transform: rotate(208deg) scale(1.1);
+  box-shadow: 0 14px 30px rgba(232,162,61,0.5);
 }
 .cta-box h2 { font-size: 1.8rem; margin-bottom: 16px; }
 .cta-box p { color: var(--text); margin-bottom: 28px; }
@@ -689,6 +724,21 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 10px;
   padding: 8px 20px 8px 14px;
+}
+.bgm-player:not(.playing) {
+  animation: bgm-invite-pulse 1.8s ease-out infinite;
+}
+.bgm-player:not(.playing) .bgm-player-icon {
+  animation: bgm-invite-bounce 1.8s ease-in-out infinite;
+}
+@keyframes bgm-invite-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(232,162,61,0.55); }
+  70% { box-shadow: 0 0 0 12px rgba(232,162,61,0); }
+  100% { box-shadow: 0 0 0 0 rgba(232,162,61,0); }
+}
+@keyframes bgm-invite-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
 }
 .bgm-player-icon {
   display: inline-flex;
